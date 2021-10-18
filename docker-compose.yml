@@ -5,13 +5,13 @@ services:
     build: ./
     ports: 
       - 3000:3000
-  # database:
-  #   image: postgres
-  #   container_name: postgres_db
-  #   ports:
-  #     - 5432:5432
-  #   environment: 
-  #     - POSTGRES_DB=ddudo
-  #     - POSTGRES_USER=admin
-  #     - POSTGRES_PASSWORD=ddudo123
-  #     - POSTGRES_INITDB_ARGS=--encoding=UTF-8
+  database:
+    image: postgres
+    container_name: postgres_db
+    ports:
+      - 5432:5432
+    environment: 
+      - POSTGRES_DB=ddudo
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=ddudo123
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8
