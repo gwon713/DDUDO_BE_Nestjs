@@ -1,4 +1,5 @@
-import logger from '../config/logger';
+import { Logger } from "@nestjs/common";
+
 export class User {
     private seq : Number;
     private email : String;
@@ -117,7 +118,7 @@ export class User {
     }
 
     printInfoUser = (): void => {
-        logger.info({
+        Logger.log({
             user_seq : this.seq,
             user_email : this.email,
             user_nickname : this.nickname,

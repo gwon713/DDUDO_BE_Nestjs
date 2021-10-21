@@ -1,4 +1,5 @@
-import logger from '../../config/logger';
+import { Logger } from "@nestjs/common";
+
 export class Code{
     private code_id : String;
     private code_name : String;
@@ -51,7 +52,7 @@ export class Code{
     }
 
     printInfoCode = () : void => {
-        logger.info({
+        Logger.log({
             code_id : this.code_id,
             code_name : this.code_name,
             code_etc : this.code_etc,

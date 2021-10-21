@@ -1,4 +1,5 @@
-import logger from '../../config/logger';
+import { Logger } from "@nestjs/common";
+
 export class GroupLike {
     private seq : Number;
     private user_seq : Number;
@@ -35,7 +36,7 @@ export class GroupLike {
     }
 
     printInfoGroup = (): void => {
-        logger.info({
+        Logger.log({
             group_liked_seq : this.seq,
             user_seq : this.user_seq,
             group_seq : this.group_seq

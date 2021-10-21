@@ -1,4 +1,5 @@
-import logger from '../../config/logger';
+import { Logger } from "@nestjs/common";
+
 export class Group{
     private seq : Number;
     private user_seq : Number;
@@ -183,7 +184,7 @@ export class Group{
     }
 
     printInfoGroup = (): void => {
-        logger.info({
+        Logger.log({
             group_seq : this.seq,
             user_seq : this.user_seq,
             group_name : this.name,
