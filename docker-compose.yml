@@ -11,6 +11,8 @@ services:
     image: postgres
     container_name: postgres
     hostname: postgres
+    depends_on:
+      - nest-server
     ports:
       - 5432:5432
     environment: 
