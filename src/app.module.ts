@@ -5,6 +5,7 @@ import { UserModule } from './user/user.module';
 import { GroupModule } from './group/group.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { DatabaseModule } from 'libs/database/database.module';
 
 @Module({
   imports: [
@@ -14,7 +15,7 @@ import { ConfigModule } from '@nestjs/config';
     }),
     UserModule, 
     GroupModule,
-    TypeOrmModule,
+    DatabaseModule,
   ],
   controllers: [AppController],
   providers: [AppService],

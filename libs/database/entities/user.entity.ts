@@ -4,7 +4,7 @@ export enum userSocialType {
     GOOGLE='google',
     GITHUB='github'
 }
-@Entity('ddudo_user')
+@Entity('user')
 export class DdudoUserEntity extends BaseEntity{
     @PrimaryGeneratedColumn('uuid')
     uuid: string;

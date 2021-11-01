@@ -39,7 +39,7 @@ export class DdudoGroupEntity extends BaseEntity{
     about: string;
 
     @Column()
-    hashtag: any;
+    hashtag: string;
 
     @UpdateDateColumn({
         type: 'timestamp'

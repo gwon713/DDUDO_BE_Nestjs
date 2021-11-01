@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { DdudoUserEntity } from './entities/user.entity';
+import { DdudoGroupEntity } from './entities/group.entity';
 
 @Module({
     imports: [
@@ -16,7 +18,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
             database: process.env.PG_DATABASE,
             password: process.env.PG_PASSWORD,
             entities: [
-
+                DdudoUserEntity,
+                DdudoGroupEntity,
             ],
             synchronize: true
         }),
