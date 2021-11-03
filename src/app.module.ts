@@ -11,9 +11,9 @@ import { DatabaseModule } from 'libs/database/database.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: `./env/.env.${process.env.NODE_ENV}`
+      envFilePath: `./env/.env.${process.env.NODE_ENV}`,
     }),
-    UserModule, 
+    UserModule,
     GroupModule,
     DatabaseModule,
   ],

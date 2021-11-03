@@ -1,56 +1,63 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('group')
-export class DdudoGroupEntity extends BaseEntity{
-    @PrimaryGeneratedColumn('uuid')
-    uuid: string;
+export class DdudoGroupEntity extends BaseEntity {
+  @PrimaryGeneratedColumn('uuid')
+  uuid: string;
 
-    @Column()
-    user_id: string;
+  @Column()
+  user_id: string;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column()
-    kind: string;
+  @Column()
+  kind: string;
 
-    @Column()
-    status: boolean;
+  @Column()
+  status: boolean;
 
-    @Column()
-    liked: number;
+  @Column()
+  liked: number;
 
-    @Column()
-    start_date: string;
+  @Column()
+  start_date: string;
 
-    @Column()
-    place: string;
+  @Column()
+  place: string;
 
-    @Column()
-    chat_link: string;
+  @Column()
+  chat_link: string;
 
-    @Column()
-    total_user: number;
+  @Column()
+  total_user: number;
 
-    @Column()
-    join_user: number;
+  @Column()
+  join_user: number;
 
-    @Column()
-    about: string;
+  @Column()
+  about: string;
 
-    @Column()
-    hashtag: string;
+  @Column()
+  hashtag: string;
 
-    @UpdateDateColumn({
-        type: 'timestamp'
-    })
-    updated_at: string;
+  @UpdateDateColumn({
+    type: 'timestamp',
+  })
+  updated_at: string;
 
-    @CreateDateColumn({
-        type: 'timestamp'
-    })
-    created_at: string;
+  @CreateDateColumn({
+    type: 'timestamp',
+  })
+  created_at: string;
 
-    @Column()
-    deleted: boolean;
+  @Column()
+  deleted: boolean;
 }
