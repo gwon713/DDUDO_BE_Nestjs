@@ -8,4 +8,13 @@ import {
 } from 'typeorm';
 
 @Entity('group_like')
-export class DdudoGroupLikeEntity extends BaseEntity {}
+export class DdudoGroupLikeEntity extends BaseEntity {
+  @PrimaryGeneratedColumn('uuid')
+  uuid: string;
+
+  @Column()
+  user_id: string;
+
+  @Column()
+  group_id: string;
+}
