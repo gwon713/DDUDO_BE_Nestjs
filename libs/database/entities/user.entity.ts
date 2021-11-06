@@ -1,8 +1,10 @@
+import { DdudoGroupLikeEntity } from './group_like.entity';
 import {
   BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -48,4 +50,7 @@ export class DdudoUserEntity extends BaseEntity {
 
   @Column()
   deleted: boolean;
+
+  @OneToMany(() => DdudoGroupLikeEntity, (group_like) => group_like.user)
+  group_like: DdudoGroupLikeEntity;
 }
