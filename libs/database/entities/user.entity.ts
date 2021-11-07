@@ -1,4 +1,5 @@
 import { DdudoGroupLikeEntity } from './group_like.entity';
+import { DdudoGroupEntity } from './group.entity';
 import {
   BaseEntity,
   Column,
@@ -50,6 +51,9 @@ export class DdudoUserEntity extends BaseEntity {
 
   @Column()
   deleted: boolean;
+
+  @OneToMany(() => DdudoGroupEntity, (group) => group.user_id)
+  group: DdudoGroupEntity;
 
   @OneToMany(() => DdudoGroupLikeEntity, (group_like) => group_like.user)
   group_like: DdudoGroupLikeEntity;

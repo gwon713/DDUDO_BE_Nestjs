@@ -1,8 +1,10 @@
+import { DdudoUserEntity } from './user.entity';
 import {
   BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -12,8 +14,8 @@ export class DdudoGroupEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   uuid: string;
 
-  @Column()
-  user_id: string;
+  @ManyToOne(() => DdudoUserEntity, (user_id) => user_id.group)
+  user_id: DdudoUserEntity;
 
   @Column()
   name: string;
