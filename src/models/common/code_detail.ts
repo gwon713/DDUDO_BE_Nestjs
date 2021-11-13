@@ -1,3 +1,4 @@
+/*
 import { Logger } from "@nestjs/common";
 
 export class Code_detail{
@@ -72,3 +73,4 @@ export class Code_detail{
         });
     }
 };
+*/

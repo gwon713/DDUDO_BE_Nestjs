@@ -1,3 +1,4 @@
+/*
 import { Logger } from "@nestjs/common";
 
 export class User {
@@ -132,3 +133,4 @@ export class User {
         });
     }
 }
+*/
