@@ -6,10 +6,10 @@ export class DdudoCodeEntity extends BaseEntity {
   uuid: string;
 
   @Column()
-  code_name: string;
+  name: string;
 
   @Column()
-  code_etc: string;
+  etc: string;
 
   @Column()
   use_at: boolean;
