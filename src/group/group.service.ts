@@ -1,4 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class GroupService {}
+export class GroupService {
+  getHealth(): string {
+    return 'group health';
+  }
+}
