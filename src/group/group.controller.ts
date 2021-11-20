@@ -5,7 +5,7 @@ import { GroupService } from './group.service';
 export class GroupController {
   constructor(private readonly groupService: GroupService) {}
 
-  @Get()
+  @Get('/health')
   healthCheck(): string {
     return this.groupService.getHealth();
   }
