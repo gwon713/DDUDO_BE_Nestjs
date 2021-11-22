@@ -11,13 +11,22 @@ export class UserController {
   }
 
   @Post('/login')
-  userLogin(): string{
-      return this.userService.userLogin();
+  postUserLogin(): string {
+    return this.userService.userLogin();
   }
 
   @Post('/logout')
+  postUserLogOut(): string {
+    return this.userService.userLogOut();
+  }
 
   @Get('/nickname')
+  getUserNickName(): string {
+    return this.userService.userNickName();
+  }
 
   @Post('/signup')
+  postUserSignUp(): string {
+    return this.userService.userSignUp();
+  }
 }

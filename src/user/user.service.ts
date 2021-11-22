@@ -9,4 +9,16 @@ export class UserService {
   userLogin(): string {
     return 'user login';
   }
+
+  userLogOut(): string {
+    return 'user logout';
+  }
+
+  userNickName(): string {
+    return 'user nickname';
+  }
+
+  userSignUp(): string {
+    return 'user signup';
+  }
 }
