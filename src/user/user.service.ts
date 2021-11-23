@@ -14,11 +14,19 @@ export class UserService {
     return 'user logout';
   }
 
-  userNickName(): string {
-    return 'user nickname';
+  userGetNickName(): string {
+    return 'user get nickname';
   }
 
   userSignUp(): string {
     return 'user signup';
+  }
+
+  userGetProfile(): string {
+    return 'user get profile';
+  }
+
+  userEditProfile(): string {
+    return 'user edit profile';
   }
 }

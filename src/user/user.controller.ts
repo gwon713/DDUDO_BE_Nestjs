@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Put } from '@nestjs/common';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -22,11 +22,21 @@ export class UserController {
 
   @Get('/nickname')
   getUserNickName(): string {
-    return this.userService.userNickName();
+    return this.userService.userGetNickName();
   }
 
   @Post('/signup')
   postUserSignUp(): string {
     return this.userService.userSignUp();
+  }
+
+  @Get('/profile')
+  getUserProfile(): string {
+    return this.userService.userGetProfile();
+  }
+
+  @Put('/profile/edit')
+  putUserProfile(): string {
+    return this.userService.userEditProfile();
   }
 }
