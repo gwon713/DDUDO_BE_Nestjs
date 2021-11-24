@@ -11,16 +11,37 @@ export class GroupController {
   }
 
   @Get('/list')
-  
+  getGroupList(): string {
+    return this.groupService.groupList();
+  }
+
   @Get('/detail')
+  getGroupDetail(): string {
+    return this.groupService.groupDetail();
+  }
 
   @Post('/add')
+  postAddGroup(): string {
+    return this.groupService.groupAdd();
+  }
 
-  @Put('/liked')
+  @Put('/liked/edit')
+  putGroupLiked(): string {
+    return this.groupService.groupEditLiked();
+  }
 
-  @Put('/state/edit')
+  @Put('/status/edit')
+  putGroupStatus(): string {
+    return this.groupService.groupEditStatus();
+  }
 
   @Put('/edit')
+  putGroup(): string {
+    return this.groupService.groupEdit();
+  }
 
   @Get('/mylist')
+  myGroup(): string {
+    return this.groupService.myGroup();
+  }
 }
