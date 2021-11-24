@@ -30,7 +30,7 @@ export class GroupService {
     return 'group edit';
   }
 
-  getMyGroup(): string {
+  myGroup(): string {
     return 'get my group';
   }
 }
