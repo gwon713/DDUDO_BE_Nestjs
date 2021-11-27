@@ -1,4 +1,5 @@
 import { Controller, Get, Post, Put } from '@nestjs/common';
+import { ApiCreatedResponse, ApiOperation } from '@nestjs/swagger';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -6,6 +7,11 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get('/health')
+  @ApiOperation({
+    summary: 'USER APP Health Check',
+    description: 'USER APP 상태확인 API',
+  })
+  @ApiCreatedResponse({ description: 'Healthy.' })
   healthCheck(): string {
     return this.userService.getHealth();
   }
