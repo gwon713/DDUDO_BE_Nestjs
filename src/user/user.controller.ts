@@ -17,11 +17,21 @@ export class UserController {
   }
 
   @Post('/login')
+  @ApiOperation({
+    summary: 'USER APP Login',
+    description: 'USER APP 로그인 API',
+  })
+  @ApiCreatedResponse({ description: '' })
   postUserLogin(): string {
     return this.userService.userLogin();
   }
 
   @Post('/logout')
+  @ApiOperation({
+    summary: 'USER APP Log Out',
+    description: 'USER APP 로그아웃 API',
+  })
+  @ApiCreatedResponse({ description: '' })
   postUserLogOut(): string {
     return this.userService.userLogOut();
   }
