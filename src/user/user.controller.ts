@@ -37,21 +37,41 @@ export class UserController {
   }
 
   @Get('/nickname')
+  @ApiOperation({
+    summary: 'USER APP Get NickName',
+    description: 'USER APP 닉네임 가져오가 API',
+  })
+  @ApiCreatedResponse({ description: '' })
   getUserNickName(): string {
     return this.userService.userGetNickName();
   }
 
   @Post('/signup')
+  @ApiOperation({
+    summary: 'USER APP Sign Up',
+    description: 'USER APP 회원가입 API',
+  })
+  @ApiCreatedResponse({ description: '' })
   postUserSignUp(): string {
     return this.userService.userSignUp();
   }
 
   @Get('/profile')
+  @ApiOperation({
+    summary: 'USER APP Get Profile',
+    description: 'USER APP 프로필 가져오기 API',
+  })
+  @ApiCreatedResponse({ description: '' })
   getUserProfile(): string {
     return this.userService.userGetProfile();
   }
 
   @Put('/profile/edit')
+  @ApiOperation({
+    summary: 'USER APP Edit Profile',
+    description: 'USER APP 프로필 수정 API',
+  })
+  @ApiCreatedResponse({ description: '' })
   putUserProfile(): string {
     return this.userService.userEditProfile();
   }
