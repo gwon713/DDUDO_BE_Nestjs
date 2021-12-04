@@ -8,7 +8,7 @@ import { DdudoGroupEntity } from './entities/group.entity';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: `./env/.env.${process.env.NODE_ENV}`,
+      envFilePath: `./env/${process.env.NODE_ENV}.env`,
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
