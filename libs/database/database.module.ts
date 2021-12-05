@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DdudoUserEntity } from './entities/user.entity';
 import { DdudoGroupEntity } from './entities/group.entity';
+import { GraphQLModule } from '@nestjs/graphql';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { DdudoGroupEntity } from './entities/group.entity';
       entities: [DdudoUserEntity, DdudoGroupEntity],
       synchronize: true,
     }),
+    GraphQLModule.forRoot({}),
   ],
 })
 export class DatabaseModule {}
