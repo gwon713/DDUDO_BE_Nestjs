@@ -7,6 +7,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { DdudoCodeDetailEntity } from './entities/code_detail.entity';
 import { DdudoCodeEntity } from './entities/code.entity';
 import { DdudoGroupLikeEntity } from './entities/group_like.entity';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -31,7 +32,7 @@ import { DdudoGroupLikeEntity } from './entities/group_like.entity';
       synchronize: true,
     }),
     GraphQLModule.forRoot({
-      autoSchemaFile: true,
+      autoSchemaFile: join(process.cwd(), './schema.gql'),
       sortSchema: true,
     }),
   ],
