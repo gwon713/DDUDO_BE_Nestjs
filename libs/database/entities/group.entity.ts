@@ -12,7 +12,7 @@ import {
 @Entity('group')
 export class DdudoGroupEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
-  uuid: string;
+  id: string;
 
   @ManyToOne(() => DdudoUserEntity, (user_id) => user_id.group)
   user_id: DdudoUserEntity;

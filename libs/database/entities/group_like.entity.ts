@@ -10,7 +10,7 @@ import {
 @Entity('group_like')
 export class DdudoGroupLikeEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
-  uuid: string;
+  id: string;
 
   @ManyToOne(() => DdudoUserEntity, (user_id) => user_id.group_like)
   user_id: DdudoUserEntity;

@@ -6,7 +6,7 @@ export class DdudoCodeDetailEntity extends BaseEntity {
   code_id: string;
 
   @PrimaryGeneratedColumn('uuid')
-  uuid: string;
+  id: string;
 
   @Column()
   name: string;

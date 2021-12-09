@@ -17,7 +17,7 @@ export enum userSocialType {
 @Entity('user')
 export class DdudoUserEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
-  uuid: string;
+  id: string;
 
   @Column()
   email: string;
