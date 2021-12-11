@@ -2,7 +2,7 @@ import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { userSocialType } from 'libs/database/entities/user.entity';
 
 @ObjectType()
-export class User {
+export class DdudoUser {
   @Field(() => ID, { nullable: false })
   id!: string;
 
