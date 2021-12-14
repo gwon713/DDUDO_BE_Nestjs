@@ -15,5 +15,5 @@ export class DdudoCodeDetailEntity extends BaseEntity {
   etc: string;
 
   @Column()
-  use_at: string;
+  use_at: boolean;
 }

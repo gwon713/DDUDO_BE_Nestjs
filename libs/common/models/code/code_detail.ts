@@ -1,76 +1,19 @@
-/*
-import { Logger } from "@nestjs/common";
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 
-export class Code_detail{
-    private code_id : String;
-    private code_detail_id : String;
-    private code_detail_name : String;
-    private code_detail_etc : String;
-    private use_at : Boolean;
+@ObjectType()
+export class DdudoCodeDetail {
+  @Field(() => ID, { nullable: false })
+  code_id!: string;
 
-    constructor(
-        code_id: String, 
-        code_detail_id: String, 
-        code_detail_name: String, 
-        code_detail_etc: String, 
-        use_at: Boolean
-    ) 
-    {
-        this.code_id = code_id
-        this.code_detail_id = code_detail_id
-        this.code_detail_name = code_detail_name
-        this.code_detail_etc = code_detail_etc
-        this.use_at = use_at
-    }
-   
-    public getCode_id(): String {
-        return this.code_id;
-    }
+  @Field(() => ID, { nullable: false })
+  id!: string;
 
-    public setCode_id(code_id: String): void {
-        this.code_id = code_id;
-    }
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    public getCode_detail_id(): String {
-        return this.code_detail_id;
-    }
+  @Field(() => String, { nullable: false })
+  etc!: string;
 
-    public setCode_detail_id(code_detail_id: String): void {
-        this.code_detail_id = code_detail_id;
-    }
-
-    public getCode_detail_name(): String {
-        return this.code_detail_name;
-    }
-
-    public setCode_detail_name(code_detail_name: String): void {
-        this.code_detail_name = code_detail_name;
-    }
-
-    public getCode_detail_etc(): String {
-        return this.code_detail_etc;
-    }
-
-    public setCode_detail_etc(code_detail_etc: String): void {
-        this.code_detail_etc = code_detail_etc;
-    }
-
-    public isUse_at(): Boolean {
-        return this.use_at;
-    }
-
-    public setUse_at(use_at: Boolean): void {
-        this.use_at = use_at;
-    }
-
-    printInfoCode_detail = () : void => {
-        Logger.log({
-            code_id : this.code_id,
-            code_detail_id : this.code_detail_id,
-            code_detail_name : this.code_detail_name,
-            code_detail_etc : this.code_detail_etc,
-            use_at : this.use_at
-        });
-    }
-};
-*/
+  @Field(() => Boolean, { nullable: false })
+  use_at!: boolean;
+}
