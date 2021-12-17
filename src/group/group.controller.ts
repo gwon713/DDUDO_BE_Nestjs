@@ -22,8 +22,8 @@ export class GroupController {
     description: 'GROUP APP 그룹리스트 API',
   })
   @ApiCreatedResponse({ description: '' })
-  getGroupList(): string {
-    return this.groupService.groupList();
+  async getGroupList(): Promise<any> {
+    return await this.groupService.groupList();
   }
 
   @Get('/detail')

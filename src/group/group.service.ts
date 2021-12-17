@@ -1,13 +1,16 @@
 import { Injectable } from '@nestjs/common';
+import { DdudoGroupEntity } from '../../libs/database/entities/group.entity';
+import { DdudoGroupRepository } from '../../libs/database/repositories/group.repository';
 
 @Injectable()
 export class GroupService {
+  constructor(private readonly groupRepository: DdudoGroupRepository) {}
   getHealth(): string {
     return 'group health';
   }
 
-  groupList(): string {
-    return 'group list';
+  async groupList(): Promise<DdudoGroupEntity[]> {
+    return this.groupRepository.find();
   }
 
   groupDetail(): string {
