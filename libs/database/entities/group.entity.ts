@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { DdudoGroupType } from 'libs/common/constant';
 
 @Entity('group')
 export class DdudoGroupEntity extends BaseEntity {
@@ -61,5 +62,5 @@ export class DdudoGroupEntity extends BaseEntity {
   created_at: string;
 
   @Column()
-  deleted: boolean;
+  state: DdudoGroupType;
 }

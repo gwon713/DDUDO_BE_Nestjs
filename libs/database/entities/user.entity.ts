@@ -1,5 +1,6 @@
 import { DdudoGroupLikeEntity } from './group_like.entity';
 import { DdudoGroupEntity } from './group.entity';
+import { DdudoUserType } from 'libs/common/constant';
 import {
   BaseEntity,
   Column,
@@ -50,7 +51,7 @@ export class DdudoUserEntity extends BaseEntity {
   last_login_at: string;
 
   @Column()
-  deleted: boolean;
+  state: DdudoUserType;
 
   @OneToMany(() => DdudoGroupEntity, (group) => group.user_id)
   group: DdudoGroupEntity;
