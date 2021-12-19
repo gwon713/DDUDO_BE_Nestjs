@@ -4,6 +4,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -12,55 +13,110 @@ import { DdudoGroupType } from 'libs/common/constant';
 
 @Entity('group')
 export class DdudoGroupEntity extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('uuid', {
+    name: 'id',
+    comment: '',
+  })
   id: string;
 
-  @ManyToOne(() => DdudoUserEntity, (user_id) => user_id.group)
-  user_id: DdudoUserEntity;
+  @Column({
+    name: 'user_id',
+    comment: '',
+  })
+  userId: string;
 
-  @Column()
+  @Column({
+    name: 'name',
+    comment: '',
+  })
   name: string;
 
-  @Column()
+  @Column({
+    name: 'kind',
+    comment: '',
+  })
   kind: string;
 
-  @Column()
+  @Column({
+    name: 'status',
+    comment: '',
+  })
   status: boolean;
 
-  @Column()
+  @Column({
+    name: 'liked',
+    comment: '',
+  })
   liked: number;
 
-  @Column()
-  start_date: string;
+  @Column({
+    name: 'start_date',
+    comment: '',
+  })
+  startDate: string;
 
-  @Column()
+  @Column({
+    name: 'place',
+    comment: '',
+  })
   place: string;
 
-  @Column()
-  chat_link: string;
+  @Column({
+    name: 'chat_link',
+    comment: '',
+  })
+  chatLink: string;
 
-  @Column()
-  total_user: number;
+  @Column({
+    name: 'total_user',
+    comment: '',
+  })
+  totalUser: number;
 
-  @Column()
-  join_user: number;
+  @Column({
+    name: 'join_user',
+    comment: '',
+  })
+  joinUser: number;
 
-  @Column()
+  @Column({
+    name: 'about',
+    comment: '',
+  })
   about: string;
 
-  @Column()
+  @Column({
+    name: 'hashtag',
+    comment: '',
+  })
   hashtag: string;
 
+  @Column({
+    name: 'state',
+    comment: '',
+  })
+  state: DdudoGroupType;
+
   @UpdateDateColumn({
+    name: 'updated_at',
     type: 'timestamp',
   })
-  updated_at: string;
+  updatedAt: string;
 
   @CreateDateColumn({
+    name: 'create_at',
     type: 'timestamp',
   })
-  created_at: string;
+  createdAt: string;
 
-  @Column()
-  state: DdudoGroupType;
+  @ManyToOne(() => DdudoUserEntity, {
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE',
+    nullable: false,
+  })
+  @JoinColumn({
+    name: 'user_id',
+    referencedColumnName: 'id',
+  })
+  user: Promise<DdudoUserEntity>;
 }
