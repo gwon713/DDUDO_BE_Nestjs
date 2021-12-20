@@ -17,43 +17,67 @@ export enum userSocialType {
 }
 @Entity('user')
 export class DdudoUserEntity extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('uuid', {
+    name: 'id',
+    comment: '',
+  })
   id: string;
 
-  @Column()
+  @Column({
+    name: 'email',
+    comment: '',
+  })
   email: string;
 
-  @Column()
-  nickname: string;
+  @Column({
+    name: 'nickname',
+    comment: '',
+  })
+  nickName: string;
 
-  @Column()
+  @Column({
+    name: 'token',
+    comment: '',
+  })
   token: string;
 
-  @Column()
+  @Column({
+    name: 'social',
+    comment: '',
+  })
   social: userSocialType;
 
-  @Column()
+  @Column({
+    name: 'file',
+    comment: '',
+  })
   file: string;
 
   @UpdateDateColumn({
+    name: 'updated_at',
     type: 'timestamp',
   })
-  updated_at: string;
+  updatedAt: string;
 
   @CreateDateColumn({
+    name: 'create_at',
     type: 'timestamp',
   })
-  created_at: string;
+  createdAt: string;
 
   @Column({
+    name: 'last_login_at',
     type: 'timestamp',
   })
-  last_login_at: string;
+  lastLoginAt: string;
 
-  @Column()
+  @Column({
+    name: 'state',
+    comment: '',
+  })
   state: DdudoUserType;
 
-  @OneToMany(() => DdudoGroupEntity, (group) => group.user_id)
+  @OneToMany(() => DdudoGroupEntity, (group) => group.userId)
   group: DdudoGroupEntity;
 
   @OneToMany(() => DdudoGroupLikeEntity, (group_like) => group_like.user_id)
