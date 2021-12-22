@@ -2,15 +2,27 @@ import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('code')
 export class DdudoCodeEntity extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('uuid', {
+    name: 'id',
+    comment: '',
+  })
   id: string;
 
-  @Column()
+  @Column({
+    name: 'name',
+    comment: '',
+  })
   name: string;
 
-  @Column()
+  @Column({
+    name: 'etc',
+    comment: '',
+  })
   etc: string;
 
-  @Column()
+  @Column({
+    name: 'use_at',
+    comment: '',
+  })
   use_at: boolean;
 }
