@@ -24,5 +24,5 @@ export class DdudoCodeEntity extends BaseEntity {
     name: 'use_at',
     comment: '',
   })
-  use_at: boolean;
+  useAt: boolean;
 }

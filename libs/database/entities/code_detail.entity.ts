@@ -3,7 +3,7 @@ import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 @Entity('code_detail')
 export class DdudoCodeDetailEntity extends BaseEntity {
   @Column()
-  code_id: string;
+  codeId: string;
 
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -15,5 +15,5 @@ export class DdudoCodeDetailEntity extends BaseEntity {
   etc: string;
 
   @Column()
-  use_at: boolean;
+  useAt: boolean;
 }

@@ -80,6 +80,6 @@ export class DdudoUserEntity extends BaseEntity {
   @OneToMany(() => DdudoGroupEntity, (group) => group.userId)
   group: DdudoGroupEntity;
 
-  @OneToMany(() => DdudoGroupLikeEntity, (group_like) => group_like.user_id)
+  @OneToMany(() => DdudoGroupLikeEntity, (group_like) => group_like.userId)
   group_like: DdudoGroupLikeEntity;
 }

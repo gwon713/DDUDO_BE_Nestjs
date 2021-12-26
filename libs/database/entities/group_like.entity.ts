@@ -16,6 +16,12 @@ export class DdudoGroupLikeEntity extends BaseEntity {
   })
   id: string;
 
+  @Column({
+    name: 'hashtag',
+    comment: '',
+  })
+  groupId: string;
+
   @ManyToOne(() => DdudoUserEntity, {
     onDelete: 'RESTRICT',
     onUpdate: 'CASCADE',
@@ -25,8 +31,5 @@ export class DdudoGroupLikeEntity extends BaseEntity {
     name: 'user_id',
     referencedColumnName: 'id',
   })
-  user_id: Promise<DdudoUserEntity>;
-
-  @Column()
-  group_id: string;
+  userId: Promise<DdudoUserEntity>;
 }
