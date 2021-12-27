@@ -5,15 +5,27 @@ export class DdudoCodeDetailEntity extends BaseEntity {
   @Column()
   codeId: string;
 
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('uuid', {
+    name: 'id',
+    comment: '',
+  })
   id: string;
 
-  @Column()
+  @Column({
+    name: 'name',
+    comment: '',
+  })
   name: string;
 
-  @Column()
+  @Column({
+    name: 'etc',
+    comment: '',
+  })
   etc: string;
 
-  @Column()
+  @Column({
+    name: 'use_at',
+    comment: '',
+  })
   useAt: boolean;
 }
