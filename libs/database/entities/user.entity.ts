@@ -1,6 +1,6 @@
 import { DdudoGroupLikeEntity } from './group_like.entity';
 import { DdudoGroupEntity } from './group.entity';
-import { DdudoUserType } from 'libs/common/constant';
+import { DdudoUserType, DdudoUserSocialType } from 'libs/common/constant';
 import {
   BaseEntity,
   Column,
@@ -10,11 +10,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-export enum userSocialType {
-  KAKAO = 'kakao',
-  GOOGLE = 'google',
-  GITHUB = 'github',
-}
+
 @Entity('user')
 export class DdudoUserEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid', {
@@ -39,13 +35,13 @@ export class DdudoUserEntity extends BaseEntity {
     name: 'token',
     comment: '',
   })
-  token: string;
+  password: string;
 
   @Column({
     name: 'social',
     comment: '',
   })
-  social: userSocialType;
+  social: DdudoUserSocialType;
 
   @Column({
     name: 'file',

@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { userSocialType } from 'libs/database/entities/user.entity';
+import { DdudoUserSocialType, DdudoUserType } from '../constant/user.type';
 
 @ObjectType()
 export class DdudoUser {
@@ -13,10 +13,10 @@ export class DdudoUser {
   nickname!: string;
 
   @Field(() => String, { nullable: false })
-  token!: string;
+  password!: string;
 
-  @Field(() => userSocialType, { nullable: false })
-  social!: userSocialType;
+  @Field(() => DdudoUserSocialType, { nullable: false })
+  social!: DdudoUserSocialType;
 
   @Field(() => String, { nullable: true })
   file?: string;
@@ -30,6 +30,6 @@ export class DdudoUser {
   @Field(() => Date, { nullable: false })
   last_login_at!: Date;
 
-  @Field(() => Boolean, { nullable: false })
-  deleted!: boolean;
+  @Field(() => DdudoUserType, { nullable: false })
+  deleted!: DdudoUserType;
 }

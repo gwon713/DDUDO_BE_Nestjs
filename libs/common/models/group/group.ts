@@ -1,4 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { DdudoGroupType } from '../../constant/group.type';
 
 @ObjectType()
 export class DdudoGroup {
@@ -47,6 +48,6 @@ export class DdudoGroup {
   @Field(() => Date, { nullable: false })
   created_at!: Date;
 
-  @Field(() => Boolean, { nullable: false })
-  deleted!: boolean;
+  @Field(() => DdudoGroupType, { nullable: false })
+  deleted!: DdudoGroupType;
 }
