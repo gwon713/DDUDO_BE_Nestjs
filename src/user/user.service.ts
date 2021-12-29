@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { DdudoUser } from 'libs/common/models/user';
 
 @Injectable()
 export class UserService {
@@ -6,8 +7,8 @@ export class UserService {
     return 'user health';
   }
 
-  userLogin(): string {
-    return 'user login';
+  async userLogin(): Promise<DdudoUser> {
+    return;
   }
 
   userLogOut(): string {
