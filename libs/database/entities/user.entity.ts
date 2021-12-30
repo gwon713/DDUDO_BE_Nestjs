@@ -32,7 +32,7 @@ export class DdudoUserEntity extends BaseEntity {
   nickName: string;
 
   @Column({
-    name: 'token',
+    name: 'password',
     comment: '',
   })
   password: string;
