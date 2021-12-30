@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { DdudoGroupType } from '../../constant/group.type';
+import { DdudoGroupType } from '../constant';
 
 @ObjectType()
 export class DdudoGroup {
