@@ -1,11 +1,14 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { DdudoUser } from 'libs/common/models/user';
-import { Connection, QueryBuilder } from 'typeorm';
+import { DdudoUserEntity } from 'libs/database/entities';
+import { DdudoUserRepository } from 'libs/database/repositories';
+import { Connection, EntityManager, QueryBuilder } from 'typeorm';
 
 @Injectable()
 export class UserService {
   constructor(
     private readonly connection: Connection,
+    private readonly ddudoUserRepository: DdudoUserRepository,
     private readonly logger: Logger,
   ) {
     this.logger = new Logger(UserService.name);
@@ -15,14 +18,15 @@ export class UserService {
     return 'user health';
   }
 
-  async userLogin(): Promise<DdudoUser> {
+  async userLogin(email: string): Promise<DdudoUserEntity> {
     const queryRunner = this.connection.createQueryRunner();
-
     await queryRunner.connect();
     await queryRunner.startTransaction();
 
     try {
+      const user = this.ddudoUserRepository.findOne({ email: email });
       await queryRunner.commitTransaction();
+      return user;
     } catch (err) {
       // since we have errors lets rollback the changes we made
       await queryRunner.rollbackTransaction();
@@ -30,7 +34,6 @@ export class UserService {
       // you need to release a queryRunner which was manually instantiated
       await queryRunner.release();
     }
-    return;
   }
 
   userLogOut(): string {
