@@ -12,8 +12,7 @@ export class AuthService {
   ): Promise<DdudoUserEntity> {
     const user = await this.userService.userLogin(email);
     if (user && user.password === password) {
-      const { password, ...result } = user;
-      return result;
+      return user;
     }
     return null;
   }
