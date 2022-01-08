@@ -7,7 +7,7 @@ import {
   Resolver,
 } from '@nestjs/graphql';
 import { GroupService } from './group.service';
-import { DdudoGroup } from 'libs/common/models/group/group';
+import { DdudoGroup } from 'libs/common/models/group';
 
 @Resolver((of) => DdudoGroup)
 export class groupResolver {

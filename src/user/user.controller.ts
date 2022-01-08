@@ -5,7 +5,7 @@ import { UserService } from './user.service';
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
-
+  /*
   @Get('/health')
   @ApiOperation({
     summary: 'USER APP Health Check',
@@ -75,4 +75,5 @@ export class UserController {
   putUserProfile(): string {
     return this.userService.userEditProfile();
   }
+  */
 }
