@@ -1,4 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { DdudoUser } from 'libs/common/models/user';
 import { DdudoUserEntity } from 'libs/database/entities';
 import { DdudoUserRepository } from 'libs/database/repositories';
@@ -7,11 +8,11 @@ import { Connection, EntityManager, QueryBuilder } from 'typeorm';
 @Injectable()
 export class UserService {
   constructor(
-    private readonly connection: Connection,
+    @InjectRepository(DdudoUserRepository)
     private readonly ddudoUserRepository: DdudoUserRepository,
-    private readonly logger: Logger,
+    private readonly connection: Connection,
   ) {
-    this.logger = new Logger(UserService.name);
+    const logger = new Logger(UserService.name);
   }
 
   getHealth(): string {
