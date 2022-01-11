@@ -7,6 +7,7 @@ import { DatabaseModule } from 'libs/database/database.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DdudoUserRepository } from 'libs/database/repositories';
 import { UserModule } from '../user/user.module';
+import { LocalStrategy } from './local.strategy';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { UserModule } from '../user/user.module';
     DatabaseModule,
     // TypeOrmModule.forFeature([DdudoUserRepository]),
   ],
-  providers: [AuthService],
+  providers: [AuthService, LocalStrategy],
+  exports: [AuthService, JwtModule],
 })
 export class AuthModule {}
