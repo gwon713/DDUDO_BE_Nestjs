@@ -9,5 +9,6 @@ import { GroupService } from './group.service';
   imports: [DatabaseModule, TypeOrmModule.forFeature([DdudoGroupRepository])],
   controllers: [GroupController],
   providers: [GroupService],
+  exports: [GroupService],
 })
 export class GroupModule {}
