@@ -38,4 +38,14 @@ export class AuthService {
       cipher.final(),
     ]);
   }
+
+  async creatAccessToken(user: DdudoUserEntity) {
+    const payload = {
+      username: user.email,
+      sub: user.id,
+    };
+    return {
+      access_token: this.jwtService.sign(payload),
+    };
+  }
 }
