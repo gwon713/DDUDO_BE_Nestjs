@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { DdudoUser } from 'libs/common/models/user';
 import { DdudoUserEntity } from 'libs/database/entities';
 import { DdudoUserRepository } from 'libs/database/repositories';
+import { AuthService } from 'src/auth/auth.service';
 import { Connection, EntityManager, QueryBuilder } from 'typeorm';
 
 @Injectable()
@@ -10,6 +11,7 @@ export class UserService {
   constructor(
     @InjectRepository(DdudoUserRepository)
     private readonly ddudoUserRepository: DdudoUserRepository,
+    private readonly authService: AuthService,
     private readonly connection: Connection,
   ) {
     const logger = new Logger(UserService.name);
@@ -19,15 +21,25 @@ export class UserService {
     return 'user health';
   }
 
-  async userLogin(email: string): Promise<DdudoUserEntity> {
+  async userLogin(email: string): Promise<any> {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
 
     try {
-      const user = this.ddudoUserRepository.findOne({ email: email });
+      const user: DdudoUserEntity = await this.ddudoUserRepository.findOne({
+        email: email,
+      });
+
+      let accessToken: any;
+      if (user != null) {
+        const accessToken = await this.authService.creatAccessToken(user);
+      }
       await queryRunner.commitTransaction();
-      return user;
+      return {
+        user: user,
+        accessToken: accessToken,
+      };
     } catch (err) {
       // since we have errors lets rollback the changes we made
       await queryRunner.rollbackTransaction();
