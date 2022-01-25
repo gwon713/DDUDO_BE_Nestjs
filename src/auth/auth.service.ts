@@ -37,8 +37,9 @@ export class AuthService {
 
   async creatAccessToken(user: DdudoUserEntity) {
     const payload = {
-      username: user.email,
       sub: user.id,
+      email: user.email,
+      social: user.social,
     };
     return {
       access_token: this.jwtService.sign(payload),

@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DdudoUser } from 'libs/common/models/user';
 import { DdudoUserEntity } from 'libs/database/entities';
@@ -30,16 +30,12 @@ export class UserService {
       const user: DdudoUserEntity = await this.ddudoUserRepository.findOne({
         email: email,
       });
-
-      let accessToken: any;
-      if (user != null) {
-        const accessToken = await this.authService.creatAccessToken(user);
+      if (user) {
+        await queryRunner.commitTransaction();
+        return await this.authService.creatAccessToken(user);
+      } else {
+        throw new UnauthorizedException({ error: 'There is no user' });
       }
-      await queryRunner.commitTransaction();
-      return {
-        user: user,
-        accessToken: accessToken,
-      };
     } catch (err) {
       // since we have errors lets rollback the changes we made
       await queryRunner.rollbackTransaction();
