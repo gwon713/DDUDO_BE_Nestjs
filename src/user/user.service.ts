@@ -5,6 +5,7 @@ import { DdudoUserEntity } from 'libs/database/entities';
 import { DdudoUserRepository } from 'libs/database/repositories';
 import { AuthService } from 'src/auth/auth.service';
 import { Connection, EntityManager, QueryBuilder } from 'typeorm';
+import { DdudoUserSignUpInput } from 'libs/common/dto';
 
 @Injectable()
 export class UserService {
@@ -53,14 +54,16 @@ export class UserService {
     return 'user get nickname';
   }
 
-  async userSignUp(): Promise<string> {
+  async userSignUp(input: DdudoUserSignUpInput): Promise<string> {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
 
     try {
       const user = this.ddudoUserRepository.save(
-        this.ddudoUserRepository.create({}),
+        this.ddudoUserRepository.create({
+          email: input.email,
+        }),
       );
       await queryRunner.commitTransaction();
       return 'success';
