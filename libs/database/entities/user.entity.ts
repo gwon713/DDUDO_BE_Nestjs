@@ -26,7 +26,7 @@ export class DdudoUserEntity extends BaseEntity {
   email: string;
 
   @Column({
-    name: 'nickname',
+    name: 'nick_name',
     comment: '',
   })
   nickName: string;

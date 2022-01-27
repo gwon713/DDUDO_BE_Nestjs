@@ -10,7 +10,7 @@ export class DdudoUser {
   email!: string;
 
   @Field(() => String, { nullable: false })
-  nickname!: string;
+  nickName!: string;
 
   @Field(() => String, { nullable: false })
   password!: string;
@@ -22,14 +22,14 @@ export class DdudoUser {
   file?: string;
 
   @Field(() => Date, { nullable: false })
-  updated_at!: Date;
+  updatedAt!: Date;
 
   @Field(() => Date, { nullable: false })
-  created_at!: Date;
+  createdAt!: Date;
 
   @Field(() => Date, { nullable: false })
-  last_login_at!: Date;
+  lastLoginAt!: Date;
 
   @Field(() => DdudoUserType, { nullable: false })
-  deleted!: DdudoUserType;
+  state!: DdudoUserType;
 }
