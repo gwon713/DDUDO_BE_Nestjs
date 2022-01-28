@@ -22,19 +22,19 @@ export class DdudoGroup {
   liked?: number;
 
   @Field(() => String, { nullable: false })
-  start_date!: string;
+  startDate!: string;
 
   @Field(() => String, { nullable: false })
   place!: string;
 
   @Field(() => String, { nullable: false })
-  chat_link!: string;
+  chatLink!: string;
 
   @Field(() => Number, { nullable: false })
-  total_user!: number;
+  totalUser!: number;
 
   @Field(() => Number, { nullable: false })
-  join_user!: number;
+  joinUser!: number;
 
   @Field(() => String, { nullable: false })
   about!: string;
@@ -43,11 +43,11 @@ export class DdudoGroup {
   hashtag!: string[];
 
   @Field(() => Date, { nullable: false })
-  updated_at!: Date;
+  updatedAt!: Date;
 
   @Field(() => Date, { nullable: false })
-  created_at!: Date;
+  createdAt!: Date;
 
   @Field(() => DdudoGroupType, { nullable: false })
-  deleted!: DdudoGroupType;
+  type!: DdudoGroupType;
 }
