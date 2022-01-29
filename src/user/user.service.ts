@@ -1,4 +1,10 @@
-import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  Logger,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DdudoUser } from 'libs/common/models/user';
 import { DdudoUserEntity } from 'libs/database/entities';
@@ -6,6 +12,7 @@ import { DdudoUserRepository } from 'libs/database/repositories';
 import { AuthService } from 'src/auth/auth.service';
 import { Connection, EntityManager, QueryBuilder } from 'typeorm';
 import { DdudoUserSignUpInput } from 'libs/common/dto';
+import { ExceptionsHandler } from '@nestjs/core/exceptions/exceptions-handler';
 
 @Injectable()
 export class UserService {
@@ -35,10 +42,13 @@ export class UserService {
         await queryRunner.commitTransaction();
         return await this.authService.creatAccessToken(user);
       } else {
-        throw new UnauthorizedException({ error: 'There is no user' });
+        throw new HttpException('FORBIDDEN_USER', HttpStatus.FORBIDDEN);
       }
     } catch (err) {
-      // since we have errors lets rollback the changes we made
+      throw new HttpException(
+        'INTERNAL_SERVER_ERROR',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
       await queryRunner.rollbackTransaction();
     } finally {
       // you need to release a queryRunner which was manually instantiated
