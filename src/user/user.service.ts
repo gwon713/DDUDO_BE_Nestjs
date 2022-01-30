@@ -45,11 +45,11 @@ export class UserService {
         throw new HttpException('FORBIDDEN_USER', HttpStatus.FORBIDDEN);
       }
     } catch (err) {
+      await queryRunner.rollbackTransaction();
       throw new HttpException(
         'INTERNAL_SERVER_ERROR',
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
-      await queryRunner.rollbackTransaction();
     } finally {
       // you need to release a queryRunner which was manually instantiated
       await queryRunner.release();
@@ -78,8 +78,11 @@ export class UserService {
       await queryRunner.commitTransaction();
       return 'success';
     } catch (err) {
-      // since we have errors lets rollback the changes we made
       await queryRunner.rollbackTransaction();
+      throw new HttpException(
+        'INTERNAL_SERVER_ERROR',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     } finally {
       // you need to release a queryRunner which was manually instantiated
       await queryRunner.release();
