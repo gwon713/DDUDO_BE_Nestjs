@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from './config/config.module';
+import { DdudoConfigModule } from './config/ddudo-config.module';
 
 @Module({
-  imports: [ConfigModule],
+  imports: [DdudoConfigModule],
 })
 export class CommonModule {}

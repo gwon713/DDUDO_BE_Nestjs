@@ -2,11 +2,20 @@ import { Strategy } from 'passport-local';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { ExtractJwt } from 'passport-jwt';
+import { DdudoConfigService } from 'libs/common/config/ddudo-config.service';
 
 @Injectable()
-export class LocalStrategy extends PassportStrategy(Strategy) {
-  constructor(private authService: AuthService) {
-    super();
+export class JwtStrategy extends PassportStrategy(Strategy) {
+  constructor(
+    private authService: AuthService,
+    private config: DdudoConfigService,
+  ) {
+    super({
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      ignoreExpiration: false,
+      secretOrKey: config.jwtSecret,
+    });
   }
 
   async validate(email: string, password: string): Promise<any> {
