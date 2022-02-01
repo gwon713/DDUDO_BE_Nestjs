@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { DdudoUser } from 'libs/common/models/user';
 import { DdudoUserEntity } from 'libs/database/entities';
 import { UserService } from '../user/user.service';
 import { createCipheriv, randomBytes, scrypt } from 'crypto';
@@ -37,7 +36,7 @@ export class AuthService {
 
   async creatAccessToken(user: DdudoUserEntity) {
     const payload = {
-      sub: user.id,
+      id: user.id,
       email: user.email,
       social: user.social,
     };
