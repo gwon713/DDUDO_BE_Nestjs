@@ -34,8 +34,6 @@ import { DdudoConfigService } from '../common/config/ddudo-config.service';
           DdudoCodeEntity,
           DdudoCodeDetailEntity,
         ],
-        migrations: [],
-        subscribers: [],
         synchronize: true,
         extra: {
           max: 5,
