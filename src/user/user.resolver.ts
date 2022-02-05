@@ -20,7 +20,8 @@ export class userResolver {
 
   @ResolveField()
   async posts(@Parent() user: DdudoUser) {
-    const { id } = user;
+    const { email } = user;
+    this.userService.userLogin(email);
     return this.userService.getHealth();
   }
 }
