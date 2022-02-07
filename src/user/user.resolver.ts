@@ -6,6 +6,7 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
+import { DdudoUserSignUpInput } from 'libs/common/dto';
 import { DdudoUser } from 'libs/common/models/user';
 import { UserService } from './user.service';
 
@@ -14,7 +15,14 @@ export class userResolver {
   constructor(private userService: UserService) {}
 
   @Query((returns) => DdudoUser)
-  async user(@Args('id', { type: () => Int }) id: number) {
+  async user(
+    @Args({
+      name: 'input',
+      description: '회원가입 정보 입력',
+      type: () => DdudoUserSignUpInput,
+    })
+    input: DdudoUserSignUpInput,
+  ) {
     return this.userService.getHealth();
   }
 
