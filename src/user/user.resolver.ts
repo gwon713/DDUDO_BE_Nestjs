@@ -1,6 +1,7 @@
 import {
   Args,
   Int,
+  Mutation,
   Parent,
   Query,
   ResolveField,
@@ -14,8 +15,8 @@ import { UserService } from './user.service';
 export class userResolver {
   constructor(private userService: UserService) {}
 
-  @Query((returns) => DdudoUser)
-  async user(
+  @Mutation((returns) => DdudoUser)
+  async userSignUp(
     @Args({
       name: 'input',
       description: '회원가입 정보 입력',
@@ -26,9 +27,16 @@ export class userResolver {
     return this.userService.getHealth();
   }
 
-  @ResolveField()
-  async posts(@Parent() user: DdudoUser) {
-    this.userService.userLogin(user.email);
+  @Mutation((returns) => DdudoUser)
+  async userLogin(
+    @Args({
+      name: 'input',
+      description: '회원가입 정보 입력',
+      type: () => DdudoUserSignUpInput,
+    })
+    input: DdudoUserSignUpInput,
+  ) {
+    this.userService.userLogin(input.email);
     return this.userService.getHealth();
   }
 }
