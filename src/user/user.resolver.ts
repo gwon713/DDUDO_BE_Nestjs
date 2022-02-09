@@ -24,6 +24,7 @@ export class userResolver {
     })
     input: DdudoUserSignUpInput,
   ) {
+    this.userService.userSignUp(input);
     return this.userService.getHealth();
   }
 
