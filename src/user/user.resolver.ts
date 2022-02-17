@@ -32,7 +32,7 @@ export class userResolver {
   async userLogin(
     @Args({
       name: 'input',
-      description: '회원가입 정보 입력',
+      description: '로그인 정보 입력',
       type: () => DdudoUserSignUpInput,
     })
     input: DdudoUserSignUpInput,
