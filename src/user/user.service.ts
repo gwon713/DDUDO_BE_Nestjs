@@ -70,13 +70,13 @@ export class UserService {
     await queryRunner.startTransaction();
 
     try {
-      const user = this.ddudoUserRepository.save(
+      const user = await this.ddudoUserRepository.save(
         this.ddudoUserRepository.create({
           email: input.email,
         }),
       );
       await queryRunner.commitTransaction();
-      return 'success';
+      return user.id;
     } catch (err) {
       await queryRunner.rollbackTransaction();
       throw new HttpException(
