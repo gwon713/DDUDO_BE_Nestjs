@@ -89,8 +89,27 @@ export class UserService {
     }
   }
 
-  userGetProfile(): string {
-    return 'user get profile';
+  async userGetProfile(email: string): Promise<DdudoUserEntity> {
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    try {
+      const user: DdudoUserEntity = await this.ddudoUserRepository.findOne({
+        email: email,
+      });
+      await queryRunner.commitTransaction();
+      return user;
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+      throw new HttpException(
+        'INTERNAL_SERVER_ERROR',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    } finally {
+      // you need to release a queryRunner which was manually instantiated
+      await queryRunner.release();
+    }
   }
 
   userEditProfile(): string {
