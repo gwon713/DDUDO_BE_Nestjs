@@ -16,13 +16,14 @@ import { ExceptionsHandler } from '@nestjs/core/exceptions/exceptions-handler';
 
 @Injectable()
 export class UserService {
+  logger: Logger;
   constructor(
     @InjectRepository(DdudoUserRepository)
     private readonly ddudoUserRepository: DdudoUserRepository,
     private readonly authService: AuthService,
     private readonly connection: Connection,
   ) {
-    const logger = new Logger(UserService.name);
+    this.logger = new Logger(UserService.name);
   }
 
   getHealth(): string {
@@ -35,9 +36,11 @@ export class UserService {
     await queryRunner.startTransaction();
 
     try {
+      this.logger.debug(email);
       const user: DdudoUserEntity = await this.ddudoUserRepository.findOne({
         email: email,
       });
+      this.logger.debug(user);
       if (user) {
         await queryRunner.commitTransaction();
         return await this.authService.creatAccessToken(user);
@@ -46,6 +49,7 @@ export class UserService {
       }
     } catch (err) {
       await queryRunner.rollbackTransaction();
+      this.logger.error(err);
       throw new HttpException(
         'INTERNAL_SERVER_ERROR',
         HttpStatus.INTERNAL_SERVER_ERROR,
