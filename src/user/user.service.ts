@@ -74,14 +74,17 @@ export class UserService {
     await queryRunner.startTransaction();
 
     try {
+      this.logger.debug(input);
       const user = await this.ddudoUserRepository.save(
         this.ddudoUserRepository.create({
           email: input.email,
         }),
       );
+      this.logger.debug(user);
       await queryRunner.commitTransaction();
       return user.id;
     } catch (err) {
+      this.logger.error(err);
       await queryRunner.rollbackTransaction();
       throw new HttpException(
         'INTERNAL_SERVER_ERROR',
@@ -99,12 +102,15 @@ export class UserService {
     await queryRunner.startTransaction();
 
     try {
+      this.logger.debug(email);
       const user: DdudoUserEntity = await this.ddudoUserRepository.findOne({
         email: email,
       });
+      this.logger.debug(user);
       await queryRunner.commitTransaction();
       return user;
     } catch (err) {
+      this.logger.error(err);
       await queryRunner.rollbackTransaction();
       throw new HttpException(
         'INTERNAL_SERVER_ERROR',
