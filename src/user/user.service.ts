@@ -55,7 +55,6 @@ export class UserService {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     } finally {
-      // you need to release a queryRunner which was manually instantiated
       await queryRunner.release();
     }
   }
@@ -91,7 +90,6 @@ export class UserService {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     } finally {
-      // you need to release a queryRunner which was manually instantiated
       await queryRunner.release();
     }
   }
@@ -117,7 +115,6 @@ export class UserService {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     } finally {
-      // you need to release a queryRunner which was manually instantiated
       await queryRunner.release();
     }
   }
