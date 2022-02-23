@@ -1,10 +1,4 @@
-import {
-  HttpException,
-  HttpStatus,
-  Injectable,
-  Logger,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DdudoUser } from 'libs/common/models/user';
 import { DdudoUserEntity } from 'libs/database/entities';
@@ -12,7 +6,6 @@ import { DdudoUserRepository } from 'libs/database/repositories';
 import { AuthService } from 'src/auth/auth.service';
 import { Connection, EntityManager, QueryBuilder } from 'typeorm';
 import { DdudoUserSignUpInput } from 'libs/common/dto';
-import { ExceptionsHandler } from '@nestjs/core/exceptions/exceptions-handler';
 
 @Injectable()
 export class UserService {
