@@ -23,10 +23,6 @@ export class UserService {
   }
 
   async userLogin(email: string): Promise<any> {
-    const queryRunner = this.connection.createQueryRunner();
-    await queryRunner.connect();
-    await queryRunner.startTransaction();
-
     try {
       this.logger.debug(email);
       const user: DdudoUserEntity = await this.ddudoUserRepository.findOne({
@@ -34,20 +30,16 @@ export class UserService {
       });
       this.logger.debug(user);
       if (user) {
-        await queryRunner.commitTransaction();
         return await this.authService.creatAccessToken(user);
       } else {
         throw new HttpException('FORBIDDEN_USER', HttpStatus.FORBIDDEN);
       }
     } catch (err) {
-      await queryRunner.rollbackTransaction();
       this.logger.error(err);
       throw new HttpException(
         'INTERNAL_SERVER_ERROR',
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
-    } finally {
-      await queryRunner.release();
     }
   }
 
@@ -87,27 +79,19 @@ export class UserService {
   }
 
   async userGetProfile(email: string): Promise<DdudoUserEntity> {
-    const queryRunner = this.connection.createQueryRunner();
-    await queryRunner.connect();
-    await queryRunner.startTransaction();
-
     try {
       this.logger.debug(email);
       const user: DdudoUserEntity = await this.ddudoUserRepository.findOne({
         email: email,
       });
       this.logger.debug(user);
-      await queryRunner.commitTransaction();
       return user;
     } catch (err) {
       this.logger.error(err);
-      await queryRunner.rollbackTransaction();
       throw new HttpException(
         'INTERNAL_SERVER_ERROR',
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
-    } finally {
-      await queryRunner.release();
     }
   }
 
