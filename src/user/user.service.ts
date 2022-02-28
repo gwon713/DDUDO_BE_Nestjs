@@ -95,7 +95,30 @@ export class UserService {
     }
   }
 
-  userEditProfile(): string {
-    return 'user edit profile';
+  async userEditProfile(input: ): string {
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    try {
+      this.logger.debug(input);
+      const user = await this.ddudoUserRepository.save(
+        this.ddudoUserRepository.create({
+          email: input.email,
+        }),
+      );
+      this.logger.debug(user);
+      await queryRunner.commitTransaction();
+      return user.id;
+    } catch (err) {
+      this.logger.error(err);
+      await queryRunner.rollbackTransaction();
+      throw new HttpException(
+        'INTERNAL_SERVER_ERROR',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    } finally {
+      await queryRunner.release();
+    }
   }
 }
