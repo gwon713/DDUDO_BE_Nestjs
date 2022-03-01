@@ -95,21 +95,29 @@ export class UserService {
     }
   }
 
-  async userEditProfile(input: ): string {
+  async userEditProfile(input: DdudoUserSignUpInput): Promise<string> {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
 
     try {
       this.logger.debug(input);
-      const user = await this.ddudoUserRepository.save(
-        this.ddudoUserRepository.create({
+      const user: DdudoUserEntity = await this.ddudoUserRepository.findOne({
+        email: input.email,
+      });
+      const updateUser = await this.ddudoUserRepository.update(
+        {
+          id: user.id,
+        },
+        {
           email: input.email,
-        }),
+          nickName: input.nickName,
+          password: input.password,
+        },
       );
       this.logger.debug(user);
       await queryRunner.commitTransaction();
-      return user.id;
+      return updateUser.raw;
     } catch (err) {
       this.logger.error(err);
       await queryRunner.rollbackTransaction();
