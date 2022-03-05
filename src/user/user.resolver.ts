@@ -40,4 +40,17 @@ export class userResolver {
     this.userService.userLogin(input.email);
     return this.userService.getHealth();
   }
+
+  @Mutation((returns) => DdudoUser)
+  async userEditProfile(
+    @Args({
+      name: 'input',
+      description: '유저 정보 업데이트',
+      type: () => DdudoUserSignUpInput,
+    })
+    input: DdudoUserSignUpInput,
+  ) {
+    this.userService.userEditProfile(input);
+    return this.userService.getHealth();
+  }
 }
