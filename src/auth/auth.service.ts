@@ -4,14 +4,18 @@ import { UserService } from '../user/user.service';
 import { createCipheriv, randomBytes, scrypt } from 'crypto';
 import { promisify } from 'util';
 import { JwtService } from '@nestjs/jwt';
+import { DdudoConfigService } from 'libs/common/config/ddudo-config.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
+    private readonly config: DdudoConfigService,
   ) {}
-  async validateUser(
+
+  /*
+  async authenticate(
     email: string,
     password: string,
   ): Promise<DdudoUserEntity> {
@@ -21,6 +25,7 @@ export class AuthService {
     }
     return null;
   }
+  */
 
   async encrypt(encrypt: string) {
     const iv = randomBytes(16);
@@ -39,6 +44,7 @@ export class AuthService {
       id: user.id,
       email: user.email,
       social: user.social,
+      exp: this.config.jwtExpire,
     };
     return {
       access_token: this.jwtService.sign(payload),
