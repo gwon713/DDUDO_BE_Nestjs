@@ -10,44 +10,47 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { DdudoFileEntity } from './file.entity';
 
 @Entity('user')
 export class DdudoUserEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid', {
     name: 'id',
-    comment: '',
+    comment: 'user id',
   })
   id: string;
 
   @Column({
     name: 'email',
-    comment: '',
+    comment: 'user email',
+    type: 'varchar',
+    length: 50,
   })
   email: string;
 
   @Column({
     name: 'nick_name',
-    comment: '',
+    comment: 'user nickname',
+    type: 'varchar',
+    length: 50,
   })
   nickName: string;
 
   @Column({
     name: 'password',
-    comment: '',
+    comment: 'user password',
+    type: 'varchar',
+    length: 255,
   })
   password: string;
 
   @Column({
     name: 'social',
-    comment: '',
+    comment: 'user social route',
+    type: 'varchar',
+    length: 255,
   })
   social: DdudoUserSocialType;
-
-  @Column({
-    name: 'file',
-    comment: '',
-  })
-  file: string;
 
   @UpdateDateColumn({
     name: 'updated_at',
@@ -74,8 +77,11 @@ export class DdudoUserEntity extends BaseEntity {
   state: DdudoUserType;
 
   @OneToMany(() => DdudoGroupEntity, (group) => group.userId)
-  group: DdudoGroupEntity;
+  groups: DdudoGroupEntity;
 
   @OneToMany(() => DdudoGroupLikeEntity, (group_like) => group_like.userId)
-  group_like: DdudoGroupLikeEntity;
+  groupLikes: DdudoGroupLikeEntity;
+
+  @OneToMany(() => DdudoFileEntity, (file) => file.userId)
+  files: DdudoFileEntity;
 }
