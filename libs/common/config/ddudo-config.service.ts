@@ -28,7 +28,11 @@ export class DdudoConfigService {
     return this.config.get<string>('JWT_SECRET', 'ddudo_jwt_secret');
   }
 
-  get jwtExpire(): string {
-    return this.config.get<string>('JWT_EXPIRE_TIME', '1 hours');
+  get jwtAccessExpire(): string {
+    return this.config.get<string>('JWT_ACCESS_EXPIRE_TIME', '1 hours');
+  }
+
+  get jwtRefreshExpire(): string {
+    return this.config.get<string>('JWT_REFRESH_EXPIRE_TIME', '1 month');
   }
 }

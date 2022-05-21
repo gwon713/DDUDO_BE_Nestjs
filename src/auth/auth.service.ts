@@ -44,7 +44,7 @@ export class AuthService {
       id: user.id,
       email: user.email,
       social: user.social,
-      exp: this.config.jwtExpire,
+      exp: this.config.jwtAccessExpire(),
     };
     return {
       access_token: this.jwtService.sign(payload),
